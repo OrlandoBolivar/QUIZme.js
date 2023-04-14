@@ -103,9 +103,9 @@ function afterQuestion() {
 
         if (lastScore !== null) {
             document.getElementsByName("saved-name").innerHTML = lastScore.testTaker;
-            
         }
     }
+    console.log(renderLastGrade)
     
 }
 

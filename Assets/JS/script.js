@@ -5,10 +5,11 @@ window.onload = function () {
 var timeEl = document.querySelector(".time")
 // Selects element by id
 var mainEl = document.getElementById("main");
-var secondsLeft = 60;
+var secondsLeft = 5;
 var timerEl = document.querySelector(".timer")
 var questionEl = document.querySelector(".questionary")
-var answerDivEl = document.querySelector(".answers")
+var answerDivEl = document.querySelector(".answers");
+var finalAnswerEl = document.querySelector(".finalAnswer");
 // var choicesEl = document.getElementById("optionChoice")
 var timerInterval;
 
@@ -34,9 +35,9 @@ function setTime() {
 
 function saveScore() {
   timeEl.textContent = " ";
-  var quizEnd = document.createElement("img");
-  imgEl.setAttribute("src", "./images");
-  mainEl.appendChild(imgEl);
+  var quizEnd = document.createElement("p");
+  quizEnd.textContent = "Your Final Score is = " + secondsLeft;
+  finalAnswerEl.appendChild(quizEnd);
 
 }
   var count = 0;

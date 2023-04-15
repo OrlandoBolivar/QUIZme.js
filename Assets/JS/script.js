@@ -10,13 +10,14 @@ var timerEl = document.querySelector(".timer")
 var questionEl = document.querySelector(".questionary")
 var answerDivEl = document.querySelector(".answers")
 // var choicesEl = document.getElementById("optionChoice")
+var timerInterval;
 
 function setTime() {
 
     timeEl.setAttribute("class","hide")
     displayQuestions()
   // Sets interval in variable
- setInterval(function() {
+  timerInterval = setInterval(function() {
     secondsLeft--;
     timerEl.textContent = secondsLeft + " seconds left until the quiz ends.";
 
@@ -30,10 +31,11 @@ function setTime() {
   }, 1000);
 }
 
+
 function saveScore() {
   timeEl.textContent = " ";
   var quizEnd = document.createElement("img");
-  imgEl.setAttribute("src", "images/image_1.jpg");
+  imgEl.setAttribute("src", "./images");
   mainEl.appendChild(imgEl);
 
 }
@@ -47,7 +49,7 @@ function displayQuestions() {
         optionEl.textContent = currentQuestion.choices[i]
         optionEl.setAttribute("id", "optionChoice")
         answerDivEl.appendChild(optionEl)
-        // optionEl.addEventListener("click", displayQuestions)
+        optionEl.addEventListener("click", displayQuestions)
     }
     
     count++;
@@ -55,14 +57,15 @@ function displayQuestions() {
 
 //erase the contents of the answer div remove children metho
 function afterQuestion() {
-
+    currentQuestion.removeChild(currentQuestion.optionEl);
+   
 }
 
 // QUESTIONARY
 
-    var containerQuestions = document.getElementsByClassName('QUIZme')[0],
-        displayedAnswers = document.getElementsByClassName ('answers')[0],
-        answerReviewer = document.getElementsByClassName ('answercheck')[0]
+var containerQuestions = document.getElementsByClassName('QUIZme')[0];
+var displayedAnswers = document.getElementsByClassName ('answers')[0];
+var answerReviewer = document.getElementsByClassName ('answercheck')[0];
 
         // object containing questions that will be display on QUIZme
         setOfQuestions = [
@@ -82,12 +85,19 @@ function afterQuestion() {
                 answer: "Dinamic"
             }
         ]
-    // Generally, it is a transformation of functions.So, it translates a function from callable likef(a, b, c) to f(a)(b)(c) .
-    // function displayQuestions(curr)
-    // var questions = Object.keys(setOfQuestions)[curr];
+    // Generally, it is a transformation of functions.So, it translates a function from callable like f(a, b, c) to f(a)(b)(c) .
+    function displayQuestions(curr){
+    var questions = Object.keys(setOfQuestions)[curr];
+    console.log(questions);
+
+    }
 
     // choicesEl.addEventListener("click", displayQuestions)
-    timeEl.addEventListener('click',setTime)
+    timeEl.addEventListener('click',setTime) 
+
+
+            
+    
 
     function saveLastGrade() {
         // save related form of dat as an object
@@ -95,9 +105,11 @@ function afterQuestion() {
             testTaker: testTaker.value.trim(),
             score: score.value.trim (),
         }
-    }    
-    
+     parse(saveLastGrade, quizMeTaker), 
+
     localStorage.setItem("quizMeTaker", JSON.stringify(quizMeTaker));
+
+    }
     function renderLastGrade() {
         var lastScore = JSON.parse(localStorage.getItem("quizMeTaker"));
 
@@ -106,6 +118,4 @@ function afterQuestion() {
         }
     }
     console.log(renderLastGrade)
-    
 }
-

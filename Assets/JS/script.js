@@ -44,6 +44,7 @@ function saveScore() {
 function displayQuestions() {
     console.log("displayQuestions - count = ", count);
     var currentQuestion = setOfQuestions[count]
+    answerDivEl.innerHTML = "";
     questionEl.textContent= currentQuestion.question
     for(var i=0; i<currentQuestion.choices.length; i++){
         var optionEl = document.createElement("button")

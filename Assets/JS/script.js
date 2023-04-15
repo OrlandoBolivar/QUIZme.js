@@ -5,7 +5,7 @@ window.onload = function () {
 var timeEl = document.querySelector(".time")
 // Selects element by id
 var mainEl = document.getElementById("main");
-var secondsLeft = 5;
+var secondsLeft = 60;
 var timerEl = document.querySelector(".timer")
 var questionEl = document.querySelector(".questionary")
 var answerDivEl = document.querySelector(".answers");
@@ -24,7 +24,6 @@ function setTime() {
 
     if(secondsLeft === 0) {
       // Stops execution of action at set interval
-      clearInterval(timerInterval);
       // Calls function to end quiz
       saveScore();
     }
@@ -34,17 +33,42 @@ function setTime() {
 
 
 function saveScore() {
+    clearInterval(timerInterval);
+
   timeEl.textContent = " ";
   var quizEnd = document.createElement("p");
   quizEnd.textContent = "Your Final Score is = " + secondsLeft;
   finalAnswerEl.appendChild(quizEnd);
 
 }
+
+function analyseAnswer(event) {
+// we need to determine if the user chose correct answer or not
+// if the user chose  wrong answer, secondsLeft should be decremented by 10 seconds
+var btnEl = event.target;
+
+if (btnEl.textContent  !== currentQuestion.answer) {
+    alert("Oops, wrong answer");
+    secondsLeft -= 10;
+    timerEl.textContent = secondsLeft + " seconds left until the quiz ends.";
+} else {
+    alert( "Correct Answer!");
+}
+count ++;
+if ( count === setOfQuestions.length || secondsLeft <= 0) {
+    saveScore();
+} else {
+    displayQuestions();
+}
+
+}
+
   var count = 0;
+  var currentQuestion;
 
 function displayQuestions() {
     console.log("displayQuestions - count = ", count);
-    var currentQuestion = setOfQuestions[count]
+    currentQuestion = setOfQuestions[count]
     answerDivEl.innerHTML = "";
     questionEl.textContent= currentQuestion.question
     for(var i=0; i<currentQuestion.choices.length; i++){
@@ -52,10 +76,10 @@ function displayQuestions() {
         optionEl.textContent = currentQuestion.choices[i]
         optionEl.setAttribute("id", "optionChoice")
         answerDivEl.appendChild(optionEl)
-        optionEl.addEventListener("click", displayQuestions)
+        optionEl.addEventListener("click", analyseAnswer)
     }
     
-    count++;
+  //  count++;
 }
 
 //erase the contents of the answer div remove children metho

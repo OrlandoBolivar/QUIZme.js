@@ -14,7 +14,7 @@ var timerInterval;
 
 function setTime() {
 
-    timeEl.setAttribute("class","hide")
+    // timeEl.setAttribute("class","hide")
     displayQuestions()
   // Sets interval in variable
   timerInterval = setInterval(function() {
@@ -39,9 +39,10 @@ function saveScore() {
   mainEl.appendChild(imgEl);
 
 }
+  var count = 0;
 
 function displayQuestions() {
-    var count = 0
+    console.log("displayQuestions - count = ", count);
     var currentQuestion = setOfQuestions[count]
     questionEl.textContent= currentQuestion.question
     for(var i=0; i<currentQuestion.choices.length; i++){
@@ -86,11 +87,11 @@ var answerReviewer = document.getElementsByClassName ('answercheck')[0];
             }
         ]
     // Generally, it is a transformation of functions.So, it translates a function from callable like f(a, b, c) to f(a)(b)(c) .
-    function displayQuestions(curr){
-    var questions = Object.keys(setOfQuestions)[curr];
-    console.log(questions);
+    // function displayQuestions(curr){
+    // var questions = Object.keys(setOfQuestions)[curr];
+    // console.log(questions);
 
-    }
+    // }
 
     // choicesEl.addEventListener("click", displayQuestions)
     timeEl.addEventListener('click',setTime) 

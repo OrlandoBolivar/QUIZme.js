@@ -97,19 +97,19 @@ var answerReviewer = document.getElementsByClassName ('answercheck')[0];
         // object containing questions that will be display on QUIZme
         setOfQuestions = [
             {
-                question: "What type of elements JavaScript is useful for?",
-                choices: ['Static','Repetitive','Dinamic'],
-                answer: "Dinamic"
+                question: "Commonly used data types DO NOT include:",
+                choices: ["1.strings", "2.booleans", "3.alerts", "4.numbers"],
+                answer: "1.strings",
             },
             {
-                question: "second question",
-                choices: ['Static','Repetitive','Dinamic'],
-                answer: "Dinamic"
+                question: "The condition in an if / else statement is enclosed within ____.",
+                choices: ["1.numbers and strings", "2.other arrays", "3.booleans", "4.all of the above"],
+                answer: "4.all of the above"
             },
             {
-                question: "third question",
-                choices: ['Static','Repetitive','Dinamic'],
-                answer: "Dinamic"
+                question: "A very useful tool used during development and debugging for printing content to the debuger is:",
+                choices: ["1.JavaScript", "2.terminal / bash", "3.for loops", "4.console.log"],
+                answer: "4.console.log"
             }
         ]
     // Generally, it is a transformation of functions.So, it translates a function from callable like f(a, b, c) to f(a)(b)(c) .
